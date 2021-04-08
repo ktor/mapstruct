@@ -1,0 +1,21 @@
+-runprovidedcapabilities: ${native_capability}
+
+-resolve.effective: resolve, active
+
+-runproperties: \
+	osgi.console=,\
+	osgi.console.enable.builtin=false
+
+-runrequires: \
+	bnd.identity;id='slf4j.api',\
+	bnd.identity;id='slf4j.simple'
+-runbundles: \
+	biz.aQute.bndlib;version='[5.3.0,5.3.1)',\
+	org.apache.felix.scr;version='[2.1.16,2.1.17)',\
+	slf4j.api;version='[1.7.25,1.7.26)',\
+	slf4j.simple;version='[1.7.25,1.7.26)'
+
+-runsystempackages: sun.nio.ch, sun.misc, sun.reflect, sun.security.ssl
+
+-runee: JavaSE-1.8
+-runfw: org.apache.felix.framework;version='[6.0.2,6.0.2]'

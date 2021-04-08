@@ -9,38 +9,24 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.mapstruct.ap.internal.gem.MappingConstantsGem;
 import org.mapstruct.ap.internal.model.Annotation;
 import org.mapstruct.ap.internal.model.Mapper;
 
 /**
  * A {@link ModelElementProcessor} which converts the given {@link Mapper}
- * object into a OSGi DS Component in case "ds" is configured as the
+ * object into a OSGi DS Component in case "osgi-ds" is configured as the
  * target component model for this mapper.
  */
-public class DsComponentProcessor extends AnnotationBasedComponentModelProcessor {
+public class OsgiDsComponentProcessor extends AnnotationBasedComponentModelProcessor {
     @Override
     protected String getComponentModelIdentifier() {
-        return "ds";
+        return MappingConstantsGem.ComponentModelGem.OSGI_DS;
     }
 
     @Override
     protected List<Annotation> getTypeAnnotations(Mapper mapper) {
-        if ( mapper.getDecorator() == null ) {
-            return Arrays.asList( component() );
-        }
-        else {
-            return Arrays.asList( component() );
-        }
-    }
-
-    @Override
-    protected List<Annotation> getDecoratorAnnotations() {
         return Arrays.asList( component() );
-    }
-
-    @Override
-    protected List<Annotation> getDelegatorReferenceAnnotations(Mapper mapper) {
-        return Arrays.asList( reference() );
     }
 
     @Override
@@ -50,7 +36,7 @@ public class DsComponentProcessor extends AnnotationBasedComponentModelProcessor
 
     @Override
     protected boolean requiresGenerationOfDecoratorClass() {
-        return true;
+        return false;
     }
 
     private Annotation component() {

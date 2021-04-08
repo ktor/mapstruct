@@ -1,0 +1,45 @@
+# Configure Repositories
+-plugin.1.R7.API: \
+	aQute.bnd.repository.maven.pom.provider.BndPomRepository; \
+		snapshotUrls=https://oss.sonatype.org/content/repositories/osgi/; \
+		releaseUrls=https://repo.maven.apache.org/maven2/; \
+		revision=org.osgi.enroute:osgi-api:7.0.0; \
+		readOnly=true; \
+		name="OSGi R7 API"
+-plugin.6.Central: \
+	aQute.bnd.repository.maven.provider.MavenBndRepository; \
+		releaseUrl=https://repo.maven.apache.org/maven2/; \
+		index=${.}/central.maven; \
+		readOnly=true; \
+		name="Maven Central"
+-plugin.7.Local: \
+	aQute.bnd.deployer.repository.LocalIndexedRepo; \
+		name = Local; \
+		pretty = true; \
+		local = ${build}/local
+
+-plugin.8.Templates: \
+	aQute.bnd.deployer.repository.LocalIndexedRepo; \
+		name = Templates; \
+		pretty = true; \
+		local = ${build}/templates
+
+-plugin.9.Release: \
+	aQute.bnd.deployer.repository.LocalIndexedRepo; \
+		name = Release; \
+		pretty = true; \
+		local = ${build}/release
+
+-releaserepo: Release
+-baselinerepo: Release
+
+-remoteworkspace: false
+
+-require-bnd:                       	"(version>=4.2.0)"
+
+baseline.version:                   	0.0.0
+base.version:                       	0.1.0
+
+-runee:                             	JavaSE-1.8
+-runfw:                             	org.apache.felix.framework;version=@6
+-runsystemcapabilities.dflt:        	${native_capability}
